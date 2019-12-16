@@ -1,0 +1,73 @@
+
+				
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="chatbot.js"></script>
+</head>
+<body>
+	<div id="inp">
+		<textarea id="msg" rows=1></textarea>
+		<button id="envoyer">▶</button>
+	</div>
+	<div id="out"></div>
+</body>
+<script type="text/javascript">
+var script =[
+	{
+		'usr':["^bonjour", "^salut","^kikoo","^hey","^hi","^bonsoir","^wesh","^coucou"], 
+		'bot':["bonjour"],
+		'drapeau':"salué",
+		'sauf':'salué'
+	},
+	{
+		'usr':["test"], 
+		'bot':["ok"]
+	},
+	{
+		'usr':["ok"], 
+		'bot':["..."]
+	},
+	{
+		'usr':["plat préféré","plat .* préfères","tu .* manger"], 
+		'bot':["les pâtes aux coques"]
+	},
+	{
+		'usr':["tu .* musique","ton .* musique","tu écoutes", "tu .* écouter"], 
+		'bot':["j'écoute souvent pnl"]
+	},
+	{
+		'usr':["va ?"],
+		'bot':["Bien et toi ?"],
+		'si':'salué',
+		'suite': [
+		 	{
+				'usr':["oui","bien","pas mal","ça va","ca va"], 
+				'bot':["ravi"]
+			},
+			{
+				'usr':["non","pas très","bof"], 
+				'bot':["dommage"]
+			}
+		]
+	},
+	{
+		'usr':[""], 
+		'bot':["rien"]
+	},
+];
+
+	chatbot.initier(script);
+	$('#envoyer').click(function() {
+	    var text = $('#msg').val();
+	    var reponse=chatbot.chercher(text);
+	    $('#out').text(reponse);
+	    console.log(reponse);
+	});
+
+	
+</script>
+</html>
